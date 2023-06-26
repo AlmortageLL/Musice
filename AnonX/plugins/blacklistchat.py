@@ -9,7 +9,7 @@ from AnonX.utils.database import (blacklist_chat,
                                        blacklisted_chats,
                                        whitelist_chat)
 from AnonX.utils.decorators.language import language
-
+from strings.filters import command
 # Commands
 
 BLACKLISTCHAT_COMMAND = get_command("BLACKLISTCHAT_COMMAND")
@@ -17,7 +17,10 @@ WHITELISTCHAT_COMMAND = get_command("WHITELISTCHAT_COMMAND")
 BLACKLISTEDCHAT_COMMAND = get_command("BLACKLISTEDCHAT_COMMAND")
 
 
-@app.on_message(filters.command(BLACKLISTCHAT_COMMAND) & SUDOERS)
+@app.on_message(
+    command(BLACKLISTCHAT_COMMAND)
+    & SUDOERS
+)
 @language
 async def blacklist_chat_func(client, message: Message, _):
     if len(message.command) != 2:
@@ -36,7 +39,10 @@ async def blacklist_chat_func(client, message: Message, _):
         pass
 
 
-@app.on_message(filters.command(WHITELISTCHAT_COMMAND) & SUDOERS)
+@app.on_message(
+    command(WHITELISTCHAT_COMMAND)
+    & SUDOERS
+)
 @language
 async def white_funciton(client, message: Message, _):
     if len(message.command) != 2:
@@ -51,7 +57,8 @@ async def white_funciton(client, message: Message, _):
 
 
 @app.on_message(
-    filters.command(BLACKLISTEDCHAT_COMMAND) & ~BANNED_USERS
+    command(BLACKLISTEDCHAT_COMMAND)
+    & ~BANNED_USERS
 )
 @language
 async def all_chats(client, message: Message, _):
