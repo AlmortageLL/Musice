@@ -32,9 +32,7 @@ from random import  choice, randint
 
 
 
-@app.on_message(
-    command("مميزات")
- )
+@app.on_message(command("مميزات"))
 async def mmmezat(client, message):
         await message.reply_text(f"""**مرحبآ بك عزيزي » {message.from_user.mention}**في قسم مميزات سورس المرتجل ميوزك\n
 ⩹━★⊷⌯⌞ ѕᴏụʀᴄᴇ ᴀʟᴍᴏʀᴛᴀɢᴇʟ ⌝⌯⊶★━⩺
